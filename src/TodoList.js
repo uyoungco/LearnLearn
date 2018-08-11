@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Input, List, Button } from 'antd';
 import store from './store/index'
+import {
+  CHANGE_INPUT_VALUE,
+  ADD_TODO_ITEM,
+  DELETE_TODO_ITEM
+} from './store/actionTypes'
 
 // const data = [
 //   'Racing car sprays burning fuel into crowd.',
@@ -19,10 +24,9 @@ class TodoList extends Component {
   }
   handleInputChange(e) {
     const action = {
-      type: 'change_input_value',
+      type: CHANGE_INPUT_VALUE,
       value: e.target.value
     }
-    console.log(store.getState())
     store.dispatch(action)
   }
   handleStoreChange() {
@@ -31,13 +35,13 @@ class TodoList extends Component {
   // 添加事件
   handleBtnClick() {
     const action = {
-      type: 'add_todo_item',
+      type: ADD_TODO_ITEM,
     }
     store.dispatch(action)
   }
   handleItemDelete(index) {
     const action = {
-      type: 'delete_todo_item',
+      type: DELETE_TODO_ITEM,
       index
     }
     store.dispatch(action)
