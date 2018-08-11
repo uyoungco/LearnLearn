@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Axios from 'axios'
 
 import TodoListUI from './TodoListUI'
 import store from './store/index'
@@ -8,8 +7,7 @@ import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-  initListAction,
-  getTodoList
+  getInitList
 } from './store/actionCreators'
 
 // const data = [
@@ -45,18 +43,24 @@ class TodoList extends Component {
     store.dispatch(action)
   }
   componentDidMount() {
-    const action = getTodoList()
+    const action = getInitList()
     store.dispatch(action)
+    console.log(action)
+    // Axios.get('/api/todolist').then((res) => {
+    //   const data = res.data
+    //   const action = initListAction(data)
+    //   store.dispatch(action)
+    // }).catch((r) => console.log(r))
 
   }
   render() {
     return (
       <TodoListUI
         inputValue={this.state.inputValue}
-        list = { this.state.list }
-        handleInputChange = {(e) => this.handleInputChange(e)}
-        handleBtnClick = {() => this.handleBtnClick()}
-        handleItemDelete = {(index) => this.handleItemDelete(index)}
+        list={this.state.list}
+        handleInputChange={(e) => this.handleInputChange(e)}
+        handleBtnClick={() => this.handleBtnClick()}
+        handleItemDelete={(index) => this.handleItemDelete(index)}
       />
     );
   }
