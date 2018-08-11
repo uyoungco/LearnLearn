@@ -8,7 +8,8 @@ import {
   getInputChangeAction,
   getAddItemAction,
   getDeleteItemAction,
-  initListAction
+  initListAction,
+  getTodoList
 } from './store/actionCreators'
 
 // const data = [
@@ -44,13 +45,8 @@ class TodoList extends Component {
     store.dispatch(action)
   }
   componentDidMount() {
-    Axios.get('/api/todolist').then((res) => {
-      const data = res.data
-      const action = initListAction(data)
-      store.dispatch(action)
-      console.log(res.data)
-    }).catch((r) => console.log(r))
-    
+    const action = getTodoList()
+    store.dispatch(action)
 
   }
   render() {

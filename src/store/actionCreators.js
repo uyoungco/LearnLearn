@@ -1,3 +1,4 @@
+import Axios from 'axios'
 import {
   CHANGE_INPUT_VALUE,
   ADD_TODO_ITEM,
@@ -23,3 +24,14 @@ export const initListAction = (data) => ({
   type: INIT_LIST_ACTION,
   data
 })
+
+export const getTodoList = () => {
+  return (dispatch) => {
+    Axios.get('/api/todolist').then((res) => {
+      const data = res.data
+      const action  = initListAction(data)
+      dispatch(action)
+      console.log(res.data)
+    }).catch((r) => console.log(r))
+  }
+}
