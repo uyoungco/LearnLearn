@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Input, List, Button } from 'antd';
+// import { Input, List, Button } from 'antd';
+import TodoListUI from './TodoListUI'
+
 import store from './store/index'
 
 import {
@@ -41,27 +43,13 @@ class TodoList extends Component {
   }
   render() {
     return (
-      <div style={{marginTop: '10px', marginLeft: '10px'}}>
-        <div>
-        <Input
-          value={this.state.inputValue}
-          placeholder="todo info"
-          style={{ width: '300px',marginRight: '10px' }}
-          onChange={(e) => this.handleInputChange(e)}
-        />
-        <Button
-          type="primary"
-          onClick={() => this.handleBtnClick()}
-        >按钮</Button>
-        </div>
-        <List
-          style={{ marginTop: '10px', width: '300px' }}
-          size="small"
-          bordered
-          dataSource={this.state.list}
-          renderItem={(item, index) => (<List.Item onClick={() => this.handleItemDelete(index)}>{item}</List.Item>)}
-        />
-      </div>
+      <TodoListUI
+        inputValue={this.state.inputValue}
+        list = { this.state.list }
+        handleInputChange = {(e) => this.handleInputChange(e)}
+        handleBtnClick = {() => this.handleBtnClick()}
+        handleItemDelete = {(index) => this.handleItemDelete(index)}
+      />
     );
   }
 }
